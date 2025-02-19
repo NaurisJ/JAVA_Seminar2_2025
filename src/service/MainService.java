@@ -1,5 +1,6 @@
 package service;
 
+import model.Professor;
 import model.Student;
 
 public class MainService {
@@ -16,6 +17,11 @@ public class MainService {
 		
 		Student st4 = new Student("23895823", "2347534789");
 		System.out.println(st4);
+		
+		
+		
+		Professor p1 = new Professor();
+		System.out.println(p1);
 
 	}
 
