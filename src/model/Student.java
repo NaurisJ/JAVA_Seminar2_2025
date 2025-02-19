@@ -7,6 +7,8 @@ public class Student {
 	private String name;
 	private String surname;
 	
+	private static long counter = 0;
+	
 	
 	// 2. getters
 	
@@ -20,10 +22,20 @@ public class Student {
 		return surname;
 	}
 	// 3. setters
+	
+	public void setstID() {
+		stID = counter++;
+	}
+	
+	
 	public void setName(String inputName) {
 		if (inputName != null
 				&& inputName.matches("[A-Z]{1}[a-z ]{1,10}[A-Z]{1}[a-z]{1,10}")) {
+			setstID();
 			name = inputName;
+		} else {
+			setstID
+			name = "unknown";
 		}
 	}
 	public void setSurname(String surname) {
