@@ -31,10 +31,8 @@ public class Student {
 	public void setName(String inputName) {
 		if (inputName != null
 				&& inputName.matches("[A-Z]{1}[a-z ]{1,10}[A-Z]{1}[a-z]{1,10}")) {
-			setstID();
 			name = inputName;
 		} else {
-			setstID
 			name = "unknown";
 		}
 	}
@@ -44,8 +42,29 @@ public class Student {
 	
 	
 	// 4. bez argumenta konstruktors
+	
+	public Student() {
+		setstID();
+		setName("Margarita");
+		setSurname("Lopeza");
+	}
+	
 	// 5. argumenta konstruktors
+	
+	public Student(String name, String surname) {
+		setstID();
+		setName(name);
+		setSurname(surname);
+		
+	}
 	// 6. toString funkcija
+	
+	// parakstam object klases toString funkciju
+	//2: Karlis Lielais
+	@Override
+	public String toString() {
+		return stID + ": " + name + " " + surname;
+	}
 	// 7. citas funkciajs (ja nepieciešams)
 	
 	
