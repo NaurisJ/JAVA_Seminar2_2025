@@ -31,7 +31,9 @@ public class MainService {
 		Student st4 = new Student("23895823", "2347534789");
 		System.out.println(st4);
 		
-		allStudents.addAll(Arrays.asList(st1, st2, st3, st4));
+		Student st5 = new Student("Laura","Gudra");
+		
+		allStudents.addAll(Arrays.asList(st1, st2, st3, st4, st5));
 		System.out.println(allStudents);
 		
 		
@@ -54,8 +56,8 @@ public class MainService {
 			
 			updateProfessorByID(2,"Karlis","Immerins",Degree.dr);
 			System.out.println(allProfessors);
-			System.out.println("IMMERINS OUT!!!");
-			removeProfessorByID(2);
+//			System.out.println("IMMERINS OUT!!!");
+//			removeProfessorByID(2);
 			
 			System.out.println("Professori ar dr gradu: " + filterProfessorByDegree(Degree.dr));
 		} catch (Exception e) {
@@ -74,22 +76,43 @@ public class MainService {
 		
 		Course c2 = new Course("JAVA",6,p2);
 		System.out.println(c2);
+
 		
-		allCourses.addAll(Arrays.asList(c1,c2));
+		Course c3;
+		try {
+			c3 = new Course("Operetajsistemas", 6, retrieveProfessorByID(1));
+			allCourses.addAll(Arrays.asList(c1,c2, c3));
+			Course c4 = new Course("Timekla tehnologijas",3,retrieveProfessorByID(1));
+		
+
 		System.out.println(allCourses);
 		
 		
 		System.out.println("-----------------------------------ATZIMES----------------------------------------");
-		Grade g1 = new Grade();
+		Grade g1 = new Grade(); // testa atzime
 		System.out.println(g1);
 		
-		Grade g2 = new Grade(c2,st3,7);
-		System.out.println(g2);
+		Grade g2 = new Grade(c2,st3,7); // 7 nopelnija Anna Paula JAVA
+//		System.out.println(g2);
+		
+		Grade g3 = new Grade(c2,st1,6); // Testa students JAVA - 6
+		Grade g4 = new Grade(c3,st2,4); // Janis Berzins JAVA - 4
+		Grade g5 = new Grade(c2,st3,5); // ANNA PAULA Operetajsistemas - 5 
+		
+		
 		
 		allGrades.addAll(Arrays.asList(g1,g2));
 		System.out.println(allGrades);
 		
-
+		System.out.println("Jana videja atzime: " + averageGradeByID(2));
+		
+		
+		System.out.println("Karlis Immers pasniedz: " + howManyCoursesByID(1) + " kursu/us");
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//CRUD
@@ -171,5 +194,68 @@ public class MainService {
 		
 		return results;
 	}
+	
+	
+	// Aprekina videjo atzimi, japadod studenta ID
+	public static float averageGradeByID(int id) throws Exception{
+		int gradeCount = 0;
+		float sum = 0;
+		
+		if (id < 0) {
+			throw new Exception("ID nevar but negativs");
+		}
+		Student foundStudent = retrieveStudentByID(id);
+		
+		for (Grade tempG : allGrades) {
+			if (tempG.getStudent().getstID() == id) {
+				gradeCount++;
+				sum += tempG.getValue();
+			}
+		}
+		
+		if (gradeCount == 0) {
+			throw new Exception("Studentam nav piesaistita neviena atzime");
+		}
+		
+		return (sum / gradeCount);
 
+		
+		
+		
+	}
+	// Aprekinat cik kursus pasniedz konkretais pasniedzejs
+	public static int howManyCoursesByID(int id) throws Exception{
+		
+		retrieveProfessorByID(id);
+		
+		int courseCount = 0;
+		
+		for (Course tempC : allCourses) {
+			if (tempC.getProfessor().getpID() == id) {
+				courseCount++;
+			}
+		}
+		
+		if (courseCount == 0) {
+			throw new Exception("Profesoram nav neviena kursa");
+		}
+		
+		return courseCount;
+		
+	}
+		public static Student retrieveStudentByID(int id) throws Exception{
+			if (id < 0) {
+				throw new Exception("ID nevar but negativs");
+			}
+			
+			for (Student tempS : allStudents) {
+				if (tempS.getstID() == id) {
+					return tempS;
+				}
+			}
+			
+			throw new Exception("Students ar noradito ID: " + id + " - neeksiste");
+			
+		}
+		
 }
