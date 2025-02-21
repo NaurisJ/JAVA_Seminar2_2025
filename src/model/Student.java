@@ -18,7 +18,7 @@ public class Student {
 	public String getName() {
 		return name;
 	}
-	public String setSurname() {
+	public String getSurname() {
 		return surname;
 	}
 	// 3. setters

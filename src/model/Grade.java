@@ -69,7 +69,7 @@ public class Grade {
 	
 	@Override
 	public String toString() {
-		return gID + ": " + course + "| " + student + " | Grade: | " + value; 
+		return gID + ": " + course.getTitle() + "| " + student.getName().charAt(0) + ". " + student.getSurname() + " | Grade: | " + value; 
 	}
 	
 
