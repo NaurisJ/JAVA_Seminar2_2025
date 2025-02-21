@@ -46,7 +46,9 @@ public class MainService {
 		
 		
 		try {
-			createProfessor("Karlis","Immers", Degree.mg);	
+			createProfessor("Karlis","Immers", Degree.mg);
+			createProfessor("Raita", "Rollande", Degree.dr);
+			createProfessor("Juris","Zagars", Degree.dr);
 			System.out.println("1 professors: " + retrieveProfessorByID(1));
 			
 			
@@ -54,6 +56,8 @@ public class MainService {
 			System.out.println(allProfessors);
 			System.out.println("IMMERINS OUT!!!");
 			removeProfessorByID(2);
+			
+			System.out.println("Professori ar dr gradu: " + filterProfessorByDegree(Degree.dr));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -147,6 +151,25 @@ public class MainService {
 		if (foundProfessor != null) {
 			allProfessors.remove(foundProfessor);
 		}
+	}
+	
+	// Filtret professorus pec grada
+	
+	public static ArrayList<Professor> filterProfessorByDegree(Degree inputDegree) throws Exception {
+		
+		if (inputDegree == null) {
+			throw new Exception("Nav pareizi ievaditi datu par gradu");
+		}
+		
+		ArrayList<Professor> results = new ArrayList<Professor>();
+		
+		for (Professor tempP : allProfessors) {
+			if (tempP.getDegree().equals(inputDegree)) {
+				results.add(tempP);
+			}
+		}
+		
+		return results;
 	}
 
 }
