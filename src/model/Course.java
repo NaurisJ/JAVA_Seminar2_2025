@@ -50,18 +50,21 @@ public class Course {
 		cID = counter++;
 	}
 	
-	public void setProfessor() {
-		
+	public void setProfessor(Professor inputProfessor) {
+		if (professor != null) {
+			professor = inputProfessor;
+		} else {
+			professor = new Professor();
+		}
 	}
 	
 	
 	// bez argumenta konstruktors
 	public Course() {
 		setcID();
-		setTitle("JAVA");
-		setCreditPoints(6);
-		
-		
+		setTitle("Testa kurss");
+		setCreditPoints(1);
+		setProfessor(new Professor());
 	}
 	
 	
