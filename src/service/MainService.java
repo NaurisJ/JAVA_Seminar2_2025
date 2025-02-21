@@ -43,6 +43,7 @@ public class MainService {
 		System.out.println(p2);
 		
 		allProfessors.addAll(Arrays.asList(p1, p2));
+		System.out.println(allProfessors);
 		
 		
 		System.out.println("-----------------------------------KURSI---------------------------------------");
@@ -53,6 +54,7 @@ public class MainService {
 		System.out.println(c2);
 		
 		allCourses.addAll(Arrays.asList(c1,c2));
+		System.out.println(allCourses);
 		
 		
 		System.out.println("-----------------------------------ATZIMES----------------------------------------");
@@ -63,8 +65,25 @@ public class MainService {
 		System.out.println(g2);
 		
 		allGrades.addAll(Arrays.asList(g1,g2));
+		System.out.println(allGrades);
 		
 
+	}
+	
+	//CRUD
+	
+	// C - create
+	
+	public static void createProfessor(String name, String surname, Degree degree) throws Exception {
+		// parbaudam vai tads professors jau eksiste
+		for (Professor tempP : allProfessors) {
+			if (tempP.getName().equals(name)
+					&& tempP.getSurname().equals(surname)
+					&& tempP.getDegree().equals(degree)) {
+				throw new Exception("Tads professors jau eksiste sistema");
+			}
+		}
+		allProfessors.add(new Professor(name, surname, degree));
 	}
 
 }
