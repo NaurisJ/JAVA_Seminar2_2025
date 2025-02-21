@@ -51,6 +51,9 @@ public class MainService {
 			
 			
 			updateProfessorByID(2,"Karlis","Immerins",Degree.dr);
+			System.out.println(allProfessors);
+			System.out.println("IMMERINS OUT!!!");
+			removeProfessorByID(2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,6 +135,17 @@ public class MainService {
 		}
 		if (inputDegree != null && !foundProfessor.getDegree().equals(inputDegree)) {
 			foundProfessor.setDegree(inputDegree);
+		}
+	}
+	
+	// D - delete
+	
+	public static void removeProfessorByID(int id) throws Exception {
+		
+		Professor foundProfessor = retrieveProfessorByID(id);
+		
+		if (foundProfessor != null) {
+			allProfessors.remove(foundProfessor);
 		}
 	}
 
