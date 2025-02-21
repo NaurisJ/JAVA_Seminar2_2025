@@ -43,6 +43,16 @@ public class MainService {
 		System.out.println(p2);
 		
 		allProfessors.addAll(Arrays.asList(p1, p2));
+		
+		
+		try {
+			createProfessor("Karlis","Immers", Degree.mg);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		System.out.println(allProfessors);
 		
 		
@@ -84,6 +94,23 @@ public class MainService {
 			}
 		}
 		allProfessors.add(new Professor(name, surname, degree));
+	}
+	
+	// R - retrieve
+	
+	public static Professor retrieveProfessorByID(int id) throws Exception{
+		if (id < 0) {
+			throw new Exception("ID nevar but negativs");
+		}
+		
+		for (Professor tempP : allProfessors) {
+			if (tempP.getpID() == id) {
+				return tempP;
+			}
+		}
+		
+		throw new Exception("Professors ar noradito ID: " + id + " - neeksiste");
+		
 	}
 
 }
