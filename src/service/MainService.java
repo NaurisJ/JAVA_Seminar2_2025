@@ -109,6 +109,9 @@ public class MainService {
 		
 		System.out.println("Karlis Immers pasniedz: " + howManyCoursesByID(1) + " kursu/us");
 		
+		
+		System.out.println(howManyBadGradesByID(2));
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -257,5 +260,26 @@ public class MainService {
 			throw new Exception("Students ar noradito ID: " + id + " - neeksiste");
 			
 		}
+		
+		
+	// Izfiltre un atgriez visas nesekmigas atzimes 
+		
+		
+	public static ArrayList<Grade> howManyBadGradesByID(int id) throws Exception {
+		
+		retrieveStudentByID(id);
+		
+		ArrayList<Grade> results = new ArrayList<Grade>();
+		
+		
+		for (Grade tempG : allGrades) {
+			if (tempG.getStudent().getstID() == id && tempG.getValue() < 4) {
+				results.add(tempG);
+			}
+		}
+		return results;
+	}
+		
+		// Saskaita cik ir kursi pie noteikta CP skaita
 		
 }
